@@ -30,11 +30,14 @@ def chart():
               .domain([0, d3.max(data)])
               .range([0, 420]);
 
+          var width = 20;
+
           d3.select(".chart")
             .selectAll("div")
               .data(data)
             .enter().append("div")
-              .style("width", function(d) { return x(d) + "px"; })
+              .style("width", d.length / width)
+              .style("height", function(d) { return x(d) + "px"; })
               .text(function(d) { return d; });
 
            </script>
