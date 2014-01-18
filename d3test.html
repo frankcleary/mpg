@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="mpg.css">
+<link rel="stylesheet" type="text/css" href="MPG.css">
 </head>
 
 
@@ -9,12 +9,15 @@
      <svg class ="chart"></svg>
      <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
      <script>
-     var data = [4, 8, 15, 16, 23, 42];
+     d3.csv("prius_gas.csv", function(error, data) {
+       data.forEach(function(d) {
+         d.MPG = +d.MPG;
+       });
      var width = 600,
          height = 600;
 
      var y = d3.scale.linear()
-               .domain([0, d3.max(data)])
+               .domain([0, 70])
                .range([height, 0]);
 
      var barWidth = width / data.length;
@@ -30,14 +33,16 @@
      
 
      bar.append("rect")
-         .attr("y", function(d) { return y(d); })
-         .attr("height", function(d) { return height - y(d); })
-         .attr("width", barWidth - 5);
+         .attr("y", function(d) { return y(d.MPG); })
+         .attr("height", function(d) { return height - y(d.MPG); })
+         .attr("width", barWidth - 5)
+         .attr("fill", "steelblue");
 
 
      bar.append("text")
      .attr("x", barWidth / 2)
-     .attr("y", function(d) { return y(d) + 3; })
+     .attr("y", function(d) { return y(d.MPG) + 3; })
      .attr("dy", ".75em")
-     .text(function(d) { return d; });
+     .text(function(d) { return d.MPG; });
+     })
  </script>
