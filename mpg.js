@@ -1,35 +1,56 @@
-d3.csv("prius_gas.csv", function(error, data) {
-  data.forEach(function(d) {
-    d.MPG = +d.MPG;
-  });
+var margin = {top: 10, right: 30, bottom: 30, left: 30},
+    width = 600 - margin.left - margin.right,
+    height = 250 - margin.top - margin.bottom;
 
-var width = 600;
-var height = 600;
+var x = d3.scale.linear()
+  .domain([0, 75])
+  .range([0, width]);
+
+var x2 = d3.scale.linear()
+  .domain([35, 75])
+  .range([0, width]);
+
+var values = [50,50,50,65,46,47,60,61,38];
+
+var formatCount = d3.format(",.0f");
+
+var data = d3.layout.histogram()
+    .bins(x2.ticks(20))
+    (values);
 
 var y = d3.scale.linear()
-	  .domain([0, 70])
-	  .range([height, 0]);
+    .domain([0, d3.max(data, function(d) { return d.y; })])
+    .range([height, 0]);
 
-var barWidth = width / data.length;
+var xAxis = d3.svg.axis()
+    .scale(x2)
+    .orient("bottom");
 
-var chart = d3.select(".chart")
-    .attr("width", width)
-    .attr("height", height);
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var bar = chart.selectAll("g")
-      .data(data)
-    .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
-
+var bar = svg.selectAll(".bar")
+    .data(data)
+  .enter().append("g")
+    .attr("class", "bar")
+    .attr("transform", function(d) { return "translate(" + x2(d.x) + "," + y(d.y) + ")"; });
 
 bar.append("rect")
-    .attr("y", function(d) { return y(d.MPG); })
-    .attr("height", function(d) { return height - y(d.MPG); })
-    .attr("width", barWidth - 5);
+    .attr("x", 1)
+    .attr("width", x(data[0].dx) - 1)
+    .attr("height", function(d) { return height - y(d.y); });
 
 bar.append("text")
-.attr("x", barWidth / 2)
-.attr("y", function(d) { return y(d.MPG) + 3; })
-.attr("dy", ".75em")
-.text(function(d) { return d.MPG; });
-})
+    .attr("dy", ".75em")
+    .attr("y", 6)
+    .attr("x", x(data[0].dx) / 2)
+    .attr("text-anchor", "middle")
+    .text(function(d) { return formatCount(d.y); });
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
