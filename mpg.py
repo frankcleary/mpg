@@ -1,4 +1,4 @@
-#! /usr/local/bin/python2.7
+#!/usr/bin/python2.7
 import cgi
 import hashlib
 import cgitb
@@ -6,7 +6,7 @@ import csv
 cgitb.enable()
 
 def readmpgcsv():
-    with open("/home/protected/prius_gas.csv", 'rb') as f:
+    with open("prius_gas.csv", 'rb') as f:
         csvreader = csv.reader(f, delimiter=',')
         data = [line for line in csvreader]
     return data
@@ -17,15 +17,14 @@ def main():
 
     data = readmpgcsv()
     print "<p>Wrote: %s" % data[-1]
-    print "<p>Miles driven: %s" % miles
-    print "<p>Your mpg was: <b>%.2f</b>" % mpg
+    print "<p>Miles driven: %s" % (float(data[-2][-2]) - float(data[-1][-2]))
+    print "<p>Your mpg was: <b>%.2f</b>" % float(data[-1][-1])
     sumgal = sum([float(row[6]) for row in data[1:]])
-    lifempg = odo/sumgal
+    lifempg = int(data[-1][-4])/sumgal
     print "<p>Lifetime mpg: %.2f" % lifempg
     gascost = sum([float(row[4])*float(row[6])
                    for row in data[1:]])
     print "<p>Lifetime gas cost: %.2f" % gascost
-    chart()
     print "<p>"
     print "<p>Lifetime Data:</p>"
     print "<table>"

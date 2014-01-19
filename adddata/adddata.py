@@ -1,4 +1,4 @@
-#! /usr/local/bin/python2.7
+#!/usr/local/bin/python2.7
 """Add a line of data from and HTTP request for the car fill-up web app"""
 
 import cgi
@@ -9,7 +9,7 @@ cgitb.enable()
 
 def authenticate(key):
     """Return true for the correct key"""
-    with open("/home/protected/keylist.txt") as f:
+    with open(".htpasswd") as f:
         keylist = f.readlines()
         keylist = [line.strip() for line in keylist]
     keyhash = hashlib.sha1(key + "enorm")
@@ -65,7 +65,7 @@ def main():
     newdata = adddata(form)
     if newdata is None:
         return
-    with open("/home/protected/prius_gas.csv", 'ab') as f:
+    with open("prius_gas.csv", 'ab') as f:
         csvwriter = csv.writer(f, delimiter=',')
         csvwriter.writerow(newdata)
     print "Location: ../mpg"  # redirect to summary page
