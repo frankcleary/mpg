@@ -18,6 +18,13 @@ def authenticate(key):
         return False
     return True
 
+def readmpgcsv():
+    with open("../prius_gas.csv", 'rb') as f:
+        csvreader = csv.reader(f, delimiter=',')
+        data = [line for line in csvreader]
+    return data
+
+
 def adddata(form):
     """Parse the data from the HTTP request"""
     date = form["date"].value
@@ -56,7 +63,6 @@ def main():
     print "Content-Type: text/html"
     print
 
-    cssprint()
     form = cgi.FieldStorage()
     if not authenticate(form["key"].value):
         print "Bad Key"
@@ -65,10 +71,24 @@ def main():
     newdata = adddata(form)
     if newdata is None:
         return
-    with open("prius_gas.csv", 'ab') as f:
+    with open("../prius_gas.csv", 'ab') as f:
         csvwriter = csv.writer(f, delimiter=',')
         csvwriter.writerow(newdata)
-    print "Location: ../mpg"  # redirect to summary page
+    print """
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="1;url=/mpg">
+        <script type="text/javascript">
+            window.location.href = "/mpg"
+        </script>
+        <title>Page Redirection</title>
+    </head>
+    <body>
+        <a href='/mpg'>MPG app</a>
+    </body>
+</html>
+"""
     
 if __name__ == "__main__":
     main()
