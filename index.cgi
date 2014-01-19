@@ -22,7 +22,7 @@ def main():
    """
 
     data = readmpgcsv()
-    print "<p>Miles driven: %s" % (float(data[-1][-2]) - float(data[-2][-2]))
+    print "<p>Miles driven: %s" % (float(data[-1][-4]) - float(data[-2][-4]))
     print "<p>Your mpg was: <b>%.2f</b>" % float(data[-1][-1])
     sumgal = sum([float(row[6]) for row in data[1:]])
     lifempg = int(data[-1][-4])/sumgal
