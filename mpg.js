@@ -56,8 +56,8 @@ var bar = svg.selectAll(".bar")
 var widthscale = xmax / (xmax - xmin)
 
 bar.append("rect")
-    .attr("x", 1)
-    .attr("width", widthscale * x(data[0].dx) - 1)
+    .attr("x", 3)
+    .attr("width", widthscale * x(data[0].dx) - 3)
     .attr("height", function(d) { return height - y(d.y); });
 
 svg.append("g")
