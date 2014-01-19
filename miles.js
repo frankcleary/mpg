@@ -1,44 +1,33 @@
 d3.csv("prius_gas.csv", function(error, csvdata) {
   csvdata.forEach(function(d) {
-    d = +d.MPG;
+    d.date = new Date(d.Date);
+    d.odometer = +d.Odometer;
   });
 
-var margin = {top: 10, right: 30, bottom: 50, left: 60},
+csvdata.forEach(function(d) { console.log(d.odometer); });
+
+var margin = {top: 10, right: 30, bottom: 50, left: 80},
     width = 600 - margin.left - margin.right,
     height = 250 - margin.top - margin.bottom;
 
-var xmin = 35
-var xmax = 60
+var minDate = csvdata[0].date,
+    maxDate = csvdata[csvdata.length - 1].date;
 
-var x = d3.scale.linear()
-  .domain([0, xmax])
+var x = d3.time.scale()
+  .domain([minDate, maxDate])
   .range([0, width]);
-
-var x2 = d3.scale.linear()
-  .domain([xmin, xmax])
-  .range([0, width]);
-
-var values = [];
-
-csvdata.forEach(function(d) { values.push(d.MPG); });
-
-var formatCount = d3.format(",.0f");
-
-var data = d3.layout.histogram()
-    .bins(x2.ticks(10))
-    (values);
 
 var y = d3.scale.linear()
-    .domain([0, d3.max(data, function(d) { return d.y; })])
+    .domain([0, d3.max(csvdata, function(d) { return d.odometer; })])
     .range([height, 0]);
 
 var xAxis = d3.svg.axis()
-    .scale(x2)
+    .scale(x)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .ticks(8)
+    .ticks(14)
     .orient("left");
 
 var svg = d3.select("body").append("svg")
@@ -47,18 +36,9 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var bar = svg.selectAll(".bar")
-    .data(data)
-  .enter().append("g")
-    .attr("class", "bar")
-    .attr("transform", function(d) { return "translate(" + x2(d.x) + "," + y(d.y) + ")"; });
-
-var widthscale = xmax / (xmax - xmin)
-
-bar.append("rect")
-    .attr("x", 1)
-    .attr("width", widthscale * x(data[0].dx) - 1)
-    .attr("height", function(d) { return height - y(d.y); });
+var line = d3.svg.line()
+    .x(function(d) { return x(d.date); } )
+    .y(function(d) { return y(d.odometer); } );
 
 svg.append("g")
     .attr("class", "x axis")
@@ -70,7 +50,7 @@ svg.append("text")
     .attr("text-anchor", "middle")
     .attr("x", width / 2)
     .attr("y", height + margin.bottom)
-    .text("MPG");
+    .text("Date");
 
 svg.append("g")
     .attr("class", "y axis")
@@ -84,5 +64,9 @@ svg.append("text")
     .attr("dy", "1em")
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
-    .text("# of fill-ups");
+    .text("Odometer reading (mi)");
+
+svg.append("path")
+    .attr("d", line(csvdata));
+
 });

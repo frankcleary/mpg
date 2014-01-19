@@ -44,3 +44,16 @@ text-anchor: middle;
   stroke: #000;
   shape-rendering: crispEdges;
 }
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+    }
+
+.axis {
+      shape-rendering: crispEdges;
+      }
+
+.label {
+font-weight:bold
+}
