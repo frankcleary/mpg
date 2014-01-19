@@ -41,7 +41,7 @@ var yAxis = d3.svg.axis()
     .ticks(8)
     .orient("left");
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#mpg").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
