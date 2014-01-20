@@ -1,11 +1,13 @@
 #!/usr/local/bin/python2.7
-"""Add a line of data from and HTTP request for the car fill-up web app"""
+"""Add a line of data from and HTTP request for the car
+fill-up web app"""
 
 import cgi
 import hashlib
 import cgitb
 import csv
 cgitb.enable()
+
 
 def authenticate(key):
     """Return true for the correct key"""
@@ -18,7 +20,12 @@ def authenticate(key):
         return False
     return True
 
+
 def readmpgcsv():
+    """Read in data from a csv file and return an array
+    of arrays of the rows in the file, each sub array
+    is a row from the file.
+    """
     with open("../prius_gas.csv", 'rb') as f:
         csvreader = csv.reader(f, delimiter=',')
         data = [line for line in csvreader]
@@ -54,12 +61,16 @@ def adddata(form):
         return None
     miles = odo - prevodo
     mpg = miles/gal
-    newdata = [date, brand, city, 
+    newdata = [date, brand, city,
                state, ppg, odo,
                gal, miles, mpg]
     return newdata
 
+
 def main():
+    """Append a line to the fill-up data .csv file and
+    redirect to the data viewing page (/mpg/index.cgi)
+    """
     print "Content-Type: text/html"
     print
 
@@ -75,20 +86,20 @@ def main():
         csvwriter = csv.writer(f, delimiter=',')
         csvwriter.writerow(newdata)
     print """
-<html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="1;url=/mpg">
-        <script type="text/javascript">
-            window.location.href = "/mpg"
-        </script>
-        <title>Page Redirection</title>
-    </head>
-    <body>
-        <a href='/mpg'>MPG app</a>
-    </body>
-</html>
-"""
-    
+      <html lang="en-US">
+             <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="refresh" content="1;url=/mpg">
+                <script type="text/javascript">
+                    window.location.href = "/mpg"
+                </script>
+                <title>Page Redirection</title>
+            </head>
+            <body>
+                <a href='/mpg'>MPG app</a>
+            </body>
+        </html>
+        """
+
 if __name__ == "__main__":
     main()

@@ -1,59 +1,49 @@
- table
- {
- border-collapse:collapse;
- }
- table, th, td
- {
- border:1px solid black;
- }
- td
- {
- text-align:center;
- padding:5px;
- }
-.chart div 
-{
-font: 10px sans-serif;
-background-color: steelblue;
-text-align: right;
-padding: 3px;
-margin: 1px;
-color: white;
+table {
+  border-collapse:collapse;
 }
-.chart rect
-{
-fill: steelblue;
+table, th, td {
+  border:1px solid black;
 }
-.chart text
-{
-fill: white;
-font: 10px sans-serif;
-text-anchor: middle;
+td {
+  text-align:center;
+  padding:5px;
+}
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+.chart rect {
+  fill: steelblue;
+}
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: middle;
 }
 .bar rect {
   fill: steelblue;
   shape-rendering: crispEdges;
 }
-
 .bar text {
   fill: #fff;
 }
-
 .axis path, .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
 path {
-    stroke: steelblue;
-    stroke-width: 2;
-    fill: none;
-    }
-
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
 .axis {
-      shape-rendering: crispEdges;
-      }
-
+  shape-rendering: crispEdges;
+}
 .label {
-font-weight:bold
+  font-weight:bold
 }
