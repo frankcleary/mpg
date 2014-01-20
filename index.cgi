@@ -55,6 +55,7 @@ def main():
           """
     print "<p>Lifetime Data:</p>"
     print "<table>"
+    data = [d[:-1] + ["%.2f" % d[-1]] for d in data]
     writetablerow(data[0], bold=True)
     for row in data[1:]:
         writetablerow(row)

@@ -60,7 +60,7 @@ def adddata(form):
         print "Bad data in file. Sorry."
         return None
     miles = odo - prevodo
-    mpg = miles/gal
+    mpg = round(miles/gal, 2)
     newdata = [date, brand, city,
                state, ppg, odo,
                gal, miles, mpg]
