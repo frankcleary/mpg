@@ -6,10 +6,10 @@ driven graph.
 Frank Cleary. frank@frankcleary.com
 """
 
-import cgi
-import hashlib
-import cgitb
+import jinja2
 import csv
+import cgi
+import cgitb
 cgitb.enable()
 
 
@@ -27,33 +27,25 @@ def readmpgcsv():
 def main():
     """Print html with info about the most recent fill-up,
     and d3.js graphs.
-    """
-    # print links to .css and .js (for graphs) files
+    """    
     print "Content-Type: text/html"
     print
-    print '<link rel="stylesheet" type="text/css" href="mpg.css">'
-    print """
-       <script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
-       <script src="mpg.js" charset="utf-8"></script>
-       <script src="miles.js" charset="utf-8"></script>
-       """
+
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath='templates/'))
+    template = env.get_template('mpg.txt')
+    dispdict = {}
 
     data = readmpgcsv()
-    sumgal = sum([float(row[6]) for row in data[1:]])
-    lifempg = int(data[-1][-4])/sumgal
-    gascost = sum([float(row[4])*float(row[6])
+    dispdict['milesdriven'] = (float(data[-1][-4]) - float(data[-2][-4]))
+    dispdict['mpg'] = float(data[-1][-1])
+    dispdict['sumgal'] = sum([float(row[6]) for row in data[1:]])
+    dispdict['lifempg'] = int(data[-1][-4])/dispdict['sumgal']
+    dispdict['gascost'] = sum([float(row[4])*float(row[6])
                    for row in data[1:]])
-
-    # print info from current fill up and table with all fillups
-    print "<p>Miles driven: %s" % (float(data[-1][-4]) - float(data[-2][-4]))
-    print "<p>Your mpg was: <b>%.2f</b>" % float(data[-1][-1])
-    print "<p>Lifetime mpg: %.2f" % lifempg
-    print "<p>Lifetime gas cost: $%.2f" % gascost
-    print "<p>"
-    print """<div id="mpg"></div>
-             <div id="miles"></div>
-          """
-    print "<p>Lifetime Data:</p>"
+    dispdict['header'] = data[0]
+    dispdict['fillups'] = data[1:]
+    print "test"
+    print template.render(dispdict)
     print "<table>"
     writetablerow(data[0], bold=True)
     for row in data[1:]:
