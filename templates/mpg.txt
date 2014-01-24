@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<link rel="stylesheet" type="text/css" href="mpg.css">
+<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+<script src="mpg.js" charset="utf-8"></script>
+<script src="miles.js" charset="utf-8"></script>
+
+<p>Miles driven: {{ milesdriven }}
+<p>Your mpg was: <b>{{ mpg }}</b>
+<p>Lifetime mpg: {{ lifempg }}
+<p>Lifetime gas cost: {{ gascost }}
+<p>
+<div id="mpg"></div>
+<div id="miles"></div>
+
+<p>Lifetime Data:</p>
+<table>
+<tr>
+{% for cell in header %}
+  <td><b>{{ cell }}</b></td>
+{% endfor %}
+</tr>
+{% for row in fillups %}
+  <tr>
+    {% for cell in row %}
+      <td>{{ cell }}</td>
+    {% endfor %}
+  </tr>
+{% endfor %} 
+</table>
+<br>
