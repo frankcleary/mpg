@@ -1,4 +1,4 @@
-#!/usr/local/bin/python2.7
+#!bin/python2.7
 """Make a page with info from the current fill-up, including
 graphs with calls to mpg.js (mpg graph) and miles.js (miles
 driven graph.
