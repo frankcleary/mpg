@@ -31,15 +31,19 @@ def main():
     print "Content-Type: text/html"
     print
 
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath='templates/'))
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(
+        searchpath='templates/')
+        )
     template = env.get_template('mpg.txt')
     dispdict = {}
 
     data = readmpgcsv()
-    dispdict['milesdriven'] = round(float(data[-1][-4]) - float(data[-2][-4]), 2)
+    dispdict['milesdriven'] = round(float(data[-1][-4]) -
+                                    float(data[-2][-4]), 2)
     dispdict['mpg'] = round(float(data[-1][-1]), 2)
     dispdict['sumgal'] = sum([float(row[6]) for row in data[1:]])
-    dispdict['lifempg'] = round(int(data[-1][-4])/dispdict['sumgal'], 2)
+    dispdict['lifempg'] = round(int(data[-1][-4])/dispdict['sumgal'],
+                                2)
     dispdict['gascost'] = round(sum([float(row[4])*float(row[6])
                    for row in data[1:]]), 2)
     dispdict['header'] = data[0]
