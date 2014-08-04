@@ -9,9 +9,9 @@ d3.csv("prius_gas.csv", function(error, csvdata) {
     d.odometer = +d.Odometer;
   });
 
-var margin = {top: 10, right: 30, bottom: 50, left: 80},
+var margin = {top: 10, right: 30, bottom: 100, left: 100},
     width = 600 - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 var minDate = csvdata[0].date,
     maxDate = csvdata[csvdata.length - 1].date;
@@ -27,12 +27,12 @@ var y = d3.scale.linear()
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .ticks(6)
+    .ticks(10)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
-    .ticks(14)
+    .ticks(7)
     .orient("left");
 
 // put the graph in the "miles" div
@@ -51,13 +51,19 @@ var line = d3.svg.line()
 svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+    .call(xAxis)
+  .selectAll("text")
+    .attr("y", 9)
+    .attr("x", 9)
+    .attr("dy", ".35em")
+    .attr("transform", "rotate(45)")
+    .style("text-anchor", "start");
 svg.append("text")
     .attr("class", "x label")
     .attr("text-anchor", "middle")
     .attr("x", width / 2)
     .attr("y", height + margin.bottom)
-    .text("Date");
+    .text("Month");
 
 // add the y axis and y-label
 svg.append("g")
@@ -72,6 +78,13 @@ svg.append("text")
     .attr("transform", "rotate(-90)")
     .style("text-anchor", "middle")
     .text("Odometer reading (mi)");
+
+svg.append("text")
+    .attr("class", "graphtitle") // see how to change this
+    .attr("y", 0)
+    .attr("x", width/2)
+    .style("text-anchor", "middle")
+    .text("Miles driven over time");
 
 // draw the line
 svg.append("path")

@@ -4,6 +4,9 @@ table {
 table, th, td {
   border:1px solid black;
 }
+.title {
+    font:200px sans-serif;
+}
 td {
   text-align:center;
   padding:5px;
