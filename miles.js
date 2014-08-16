@@ -93,11 +93,11 @@ svg.append("text")
     .text("Odometer reading (mi)");
 
 svg.append("text")
-    .attr("class", "graphtitle") // see how to change this
-    .attr("y", 15)
+    .attr("class", "graphtitle")
+    .attr("y", 30)
     .attr("x", width/2)
     .style("text-anchor", "middle")
-    .text("Miles driven over time");
+    .text("MILES OVER TIME");
 
 // draw the line
 svg.append("path")

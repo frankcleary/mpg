@@ -50,6 +50,11 @@ var yAxis = d3.svg.axis()
     .ticks(8)
     .orient("left");
 
+var d2 = 3
+
+d3.selectAll(".datainsert")
+    .text("test")
+
 // put the graph in the "mpg" div
 var svg = d3.select("#mpg").append("svg")
     .attr("width", width + margin.left + margin.right)

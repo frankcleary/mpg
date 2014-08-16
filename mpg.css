@@ -38,7 +38,7 @@ td {
     margin-top: 30px;
 }
 .graphtitle {
-    font: 20px;
+    font-size: 30px;
 }
 .datapoint:hover{
     fill: steelblue;
@@ -46,6 +46,9 @@ td {
 .bar rect {
   fill: steelblue;
   shape-rendering: crispEdges;
+}
+.bar rect:hover{
+  fill: rgba(0,0,0,.8);
 }
 .bar text {
   fill: #fff;
