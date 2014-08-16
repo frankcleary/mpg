@@ -47,6 +47,16 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); } )
     .y(function(d) { return y(d.odometer); } );
 
+//Mouseover tip
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>test</strong>";
+  })
+
+svg.call(tip);
+
 // add the x axis and x-label
 svg.append("g")
     .attr("class", "x axis")
@@ -88,5 +98,7 @@ svg.append("text")
 
 // draw the line
 svg.append("path")
-    .attr("d", line(csvdata));
+    .attr("d", line(csvdata))
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 }); // end of d3.csv

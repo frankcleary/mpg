@@ -34,7 +34,7 @@ def main():
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(
         searchpath='templates/')
         )
-    template = env.get_template('mpg.txt')
+    template = env.get_template('mpg.html')
     dispdict = {}
 
     data = readmpgcsv()
