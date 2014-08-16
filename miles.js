@@ -94,7 +94,7 @@ svg.append("text")
 
 svg.append("text")
     .attr("class", "graphtitle") // see how to change this
-    .attr("y", 0)
+    .attr("y", 15)
     .attr("x", width/2)
     .style("text-anchor", "middle")
     .text("Miles driven over time");
@@ -106,6 +106,7 @@ svg.append("path")
 svg.selectAll(".dot")
     .data(csvdata)
     .enter().append("circle")
+    .attr('class', 'datapoint')
     .attr('cx', function(d) { return x(d.date); })
     .attr('cy', function(d) { return y(d.odometer); })
     .attr('r', 6)

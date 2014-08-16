@@ -37,6 +37,12 @@ td {
     margin-bottom: 30px;
     margin-top: 30px;
 }
+.graphtitle {
+    font: 20px;
+}
+.datapoint:hover{
+    fill: steelblue;
+}
 .bar rect {
   fill: steelblue;
   shape-rendering: crispEdges;
