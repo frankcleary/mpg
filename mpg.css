@@ -51,7 +51,7 @@ td {
 }
 path {
   stroke: steelblue;
-  stroke-width: 2;
+  stroke-width: 3;
   fill: none;
 }
 .axis {
@@ -59,4 +59,12 @@ path {
 }
 .label {
   font-weight:bold
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
 }

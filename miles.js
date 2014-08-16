@@ -10,8 +10,8 @@ d3.csv("prius_gas.csv", function(error, csvdata) {
   });
 
 var margin = {top: 10, right: 30, bottom: 100, left: 100},
-    width = 600 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    width = 1000 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
 var minDate = csvdata[0].date,
     maxDate = csvdata[csvdata.length - 1].date;
@@ -50,10 +50,13 @@ var line = d3.svg.line()
 //Mouseover tip
 var tip = d3.tip()
   .attr('class', 'd3-tip')
-  .offset([-10, 0])
+  .offset([120, 40])
   .html(function(d) {
-    return "<strong>test</strong>";
-  })
+    return "<strong>" + d.odometer + " miles</strong><br>" +
+	  d.MPG + " mpg" + "<br>" +
+	  d.Date + "<br>" + 
+	  d.Brand + ", " + d.City + " " + d.State + "<br>";
+  });
 
 svg.call(tip);
 
@@ -98,7 +101,18 @@ svg.append("text")
 
 // draw the line
 svg.append("path")
-    .attr("d", line(csvdata))
+    .attr("d", line(csvdata));
+
+svg.selectAll(".dot")
+    .data(csvdata)
+    .enter().append("circle")
+    .attr('cx', function(d) { return x(d.date); })
+    .attr('cy', function(d) { return y(d.odometer); })
+    .attr('r', 6)
+    .attr('fill', 'white')
+    .attr('stroke', 'steelblue')
+    .attr('stroke-width', '3')
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide);
+
 }); // end of d3.csv
