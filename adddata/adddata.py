@@ -7,7 +7,6 @@ import cgi
 import hashlib
 import cgitb
 import csv
-import mkindex
 cgitb.enable()
 
 
@@ -74,7 +73,7 @@ def mkindex():
     and d3.js graphs.
     """    
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(
-        searchpath='templates/')
+        searchpath='../templates/')
         )
     template = env.get_template('mpg.html')
     dispdict = {}
