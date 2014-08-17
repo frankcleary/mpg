@@ -1,4 +1,4 @@
-#!/home/frank/anaconda/bin/python
+#!/usr/local/bin/python
 """Make a page with info from the current fill-up, including
 graphs with calls to mpg.js (mpg graph) and miles.js (miles
 driven graph.
