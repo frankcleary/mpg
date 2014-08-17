@@ -73,7 +73,7 @@ function milesovertime(csvdata) {
 	.attr("transform", "rotate(45)")
 	.style("text-anchor", "start");
     svg.append("text")
-	.attr("class", "x label")
+	.attr("class", "xlabel")
 	.attr("text-anchor", "middle")
 	.attr("x", width / 2)
 	.attr("y", height + margin.bottom)
@@ -85,7 +85,7 @@ function milesovertime(csvdata) {
 	.attr("transform", "translate(0,0)")
 	.call(yAxis);
     svg.append("text")
-	.attr("class", "y label")
+	.attr("class", "ylabel")
 	.attr("y", 0 - margin.left) // x and y switched due to rotation!!
 	.attr("x", 0 - (height / 2))
 	.attr("dy", "1em")
