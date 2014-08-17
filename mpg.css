@@ -1,8 +1,6 @@
-table {
-  border-collapse:collapse;
-}
 table, th, td {
-  border:1px solid black;
+   border-collapse:collapse;
+   border:1px solid black;
 }
 body {
     padding:30px
@@ -53,6 +51,7 @@ td {
 .bar text {
   fill: #fff;
 }
+
 .axis path, .axis line {
   fill: none;
   stroke: #000;
@@ -76,4 +75,9 @@ path {
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 2px;
+}
+#tiptable, #tiptable tr, #tiptable td {
+    border-collapse:collapse;
+    border-style:none;
+    border-color:steelblue;
 }
