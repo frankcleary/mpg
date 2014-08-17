@@ -108,7 +108,7 @@ def main():
     newdata = adddata(form)
     if newdata is None:
         return
-    with open("../prius_gas.csv", 'ab') as f:
+    with open("../prius_gas.csv", 'a') as f:
         csvwriter = csv.writer(f, delimiter=',')
         csvwriter.writerow(newdata)
     mkindex()
