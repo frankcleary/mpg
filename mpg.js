@@ -22,14 +22,7 @@ csvdata.forEach(function(d) {
 	date = format(new Date(d.Date));
 	histdata[bin].meta += "<tr><td>" + d.City + " " + d.State + "</td><td>" + date + "</td><td>" + parseFloat(d.MPG).toFixed(1) + " mpg</td></tr>";
     }
-
 });
-
-
-//histdata.forEach(function(d) { console.log(+d.numfill) });
-//console.log(histdata);
-//console.log(csvdata);
-//csvdata.forEach(function(d) { console.log(d.City) } );
 
 var margin = {top: 10, right: 30, bottom: 50, left: 60},
     width = 600 - margin.left - margin.right,
@@ -73,10 +66,6 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .ticks(8)
     .orient("left");
-
-var d2 = 3
-d3.selectAll(".datainsert")
-    .text("test")
 
 var tip = d3.tip()
   .attr('class', 'd3-tip')
