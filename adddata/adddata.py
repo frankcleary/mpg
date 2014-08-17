@@ -2,10 +2,12 @@
 """Add a line of data from and HTTP request for the car
 fill-up web app"""
 
+import jinja2
 import cgi
 import hashlib
 import cgitb
 import csv
+import mkindex
 cgitb.enable()
 
 
@@ -67,6 +69,31 @@ def adddata(form):
     return newdata
 
 
+def mkindex():
+    """Print html with info about the most recent fill-up,
+    and d3.js graphs.
+    """    
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(
+        searchpath='templates/')
+        )
+    template = env.get_template('mpg.html')
+    dispdict = {}
+
+    data = readmpgcsv()
+    dispdict['milesdriven'] = round(float(data[-1][-4]) -
+                                    float(data[-2][-4]), 2)
+    dispdict['mpg'] = round(float(data[-1][-1]), 2)
+    dispdict['sumgal'] = sum([float(row[6]) for row in data[1:]])
+    dispdict['lifempg'] = round(int(data[-1][-4])/dispdict['sumgal'],
+                                2)
+    dispdict['gascost'] = round(sum([float(row[4])*float(row[6])
+                   for row in data[1:]]), 2)
+    dispdict['header'] = data[0]
+    dispdict['fillups'] = data[1:]
+    output = template.render(dispdict)
+    with open('../index.html', 'w') as f:
+        f.write(output);
+
 def main():
     """Append a line to the fill-up data .csv file and
     redirect to the data viewing page (/mpg/index.cgi)
@@ -85,6 +112,7 @@ def main():
     with open("../prius_gas.csv", 'ab') as f:
         csvwriter = csv.writer(f, delimiter=',')
         csvwriter.writerow(newdata)
+    mkindex()
     print """
       <html lang="en-US">
              <head>
