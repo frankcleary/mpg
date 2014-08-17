@@ -135,7 +135,9 @@ function mpghist(csvdata) {
 
     histdata = new Array(numbins);
     for (var i = 0; i < numbins; i++) {
-	histdata[i] = { numfill: 0, meta: "" };
+	if (i < histdata.length) {
+	    histdata[i] = { numfill: 0, meta: "" };
+	}
     }
 
     csvdata.forEach(function(d) {
