@@ -51,7 +51,6 @@ td {
 .bar text {
   fill: #fff;
 }
-
 .axis path, .axis line {
   fill: none;
   stroke: #000;
@@ -65,8 +64,9 @@ path {
 .axis {
   shape-rendering: crispEdges;
 }
-.label {
-  font-weight:bold
+.xlabel, .ylabel {
+  font-weight:bold;
+  font-size:20px;
 }
 .d3-tip {
   line-height: 1;
