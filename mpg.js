@@ -140,7 +140,7 @@ function mpghist(csvdata) {
 
     csvdata.forEach(function(d) {
 	var bin = Math.floor((d.pMPG - minbin) / binsize);
-	if (bin.toString() != "NaN") {
+	if ((bin.toString() != "NaN") && (bin < histdata.length)) {
 	    histdata[bin].numfill += 1;
 	    histdata[bin].meta += "<tr><td>" + d.City + " " + d.State + 
 		"</td><td>" + format(d.pDate) + 
