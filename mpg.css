@@ -1,26 +1,50 @@
 table, th, td {
    border-collapse:collapse;
    border:1px solid black;
+   padding:5px;
+   text-align:center;
+}
+tbody tr:hover{
+	background-color: #B1DCFE;
 }
 body {
-    padding:30px
+    padding:30px;
+}
+#summarytable, #intro {
+    margin-left:50px;
+	float: left;
+	clear: left;
 }
 #summarytable {
-    margin-left:50px;
+	margin-bottom: 1em;
 }
-.title {
-    font:200px sans-serif;
+#slideshow {
+	float: right;
+	padding-bottom: 2em;
 }
-td {
-  text-align:center;
-  padding:5px;
+#sumhead {
+	border-style:hidden;
+	border-bottom: 1px;
+}
+#fulltable{
+	width:800px;
+	margin-top: 2em;
+	margin:auto;
+}
+#fullhead {
+	font-size: 1.5em;
+	padding-bottom: 0.5em;
+	border-style: hidden;
+	border-bottom: 1px;
+}
+#mpg svg, #miles svg {
+	padding-top: 1em;
 }
 .chart div {
   font: 10px sans-serif;
   background-color: steelblue;
   text-align: right;
   padding: 3px;
-  margin: 1px;
   color: white;
 }
 .chart rect {
@@ -32,8 +56,7 @@ td {
   text-anchor: middle;
 }
 .graph {
-    margin-bottom: 30px;
-    margin-top: 30px;
+	clear: left;
 }
 .graphtitle {
     font-size: 30px;
@@ -79,5 +102,4 @@ path {
 #tiptable, #tiptable tr, #tiptable td {
     border-collapse:collapse;
     border-style:none;
-    border-color:steelblue;
 }

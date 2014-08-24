@@ -1,1114 +1,1148 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<link rel="stylesheet" type="text/css" href="mpg.css">
-<script src="lib/d3.v3.min.js"  charset="utf-8"></script>
-<script src="lib/d3.tip.v0.6.3.js"></script>
-<script src="mpg.js" charset="utf-8"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-47982219-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" id="ssidx" align="right"><param name="movie" value="http://cdn.smugmug.com/ria/ShizamSlides-2013072402.swf" /><param name="flashVars" value="AlbumID=43680455&AlbumKey=6L4DcJ&transparent=true&bgColor=&borderThickness=&borderColor=&useInside=&endPoint=&mainHost=cdn.smugmug.com&VersionNos=2013072402&width=600&height=400&clickToImage=true&captions=false&showThumbs=false&autoStart=true&showSpeed=true&pageStyle=black&showButtons=true&randomStart=true&randomize=true&splash=http%3A%2F%2Fwww.smugmug.com%2Fimg%2Fria%2FShizamSlides%2Fsmugmug_black.png&splashDelay=0&crossFadeSpeed=350" /><param name="wmode" value="transparent" /><param name="allowNetworking" value="all" /><param name="allowScriptAccess" value="always" /><embed src="http://cdn.smugmug.com/ria/ShizamSlides-2013072402.swf" flashVars="AlbumID=43680455&AlbumKey=6L4DcJ&transparent=true&bgColor=&borderThickness=&borderColor=&useInside=&endPoint=&mainHost=cdn.smugmug.com&VersionNos=2013072402&width=600&height=400&clickToImage=true&captions=false&showThumbs=false&autoStart=true&showSpeed=true&pageStyle=black&showButtons=true&randomStart=true&randomize=true&splash=http%3A%2F%2Fwww.smugmug.com%2Fimg%2Fria%2FShizamSlides%2Fsmugmug_black.png&splashDelay=0&crossFadeSpeed=350" width="600" height="400" wmode="transparent" type="application/x-shockwave-flash" allowScriptAccess="always" allowNetworking="all" ></embed></object>
-
-<h3>Main site: <a href="http://www.frankcleary.com">www.frankcleary.com</a><p>Prius Data:</h3>
-
-<table id="summarytable">
-<tr><td>Miles driven last fillup</td><td>421.0</td></tr>
-<tr><td>Most recent mpg</td><td>47.98</td></tr>
-<tr><td>Lifetime mpg</td><td>49.14</td></tr>
-<tr><td>Lifetime gas cost</td><td>1407.29</td></tr>
-</table>
-<p class="datainsert"></p>
-<p>
-<div id="mpg" class="graph"></div>
-<p>
-<div id="miles" class="graph"></div>
-
-<p>Lifetime Data:</p>
-<table width="800px">
-<tr>
-
-  <td><b>Date</b></td>
-
-  <td><b>Brand</b></td>
-
-  <td><b>City</b></td>
-
-  <td><b>State</b></td>
-
-  <td><b>$/Gal</b></td>
-
-  <td><b>Odometer</b></td>
-
-  <td><b>Gallons</b></td>
-
-  <td><b>Miles</b></td>
-
-  <td><b>MPG</b></td>
-
-</tr>
-
-  <tr>
-    
-      <td>2/22/2013</td>
-    
-      <td>Texaco</td>
-    
-      <td>Mariposa</td>
-    
-      <td>CA</td>
-    
-      <td>4.259</td>
-    
-      <td>245</td>
-    
-      <td>6.23</td>
-    
-      <td>NA</td>
-    
-      <td>NA</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2/24/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>4.159</td>
-    
-      <td>707</td>
-    
-      <td>8.452</td>
-    
-      <td>412</td>
-    
-      <td>48.75</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>3/8/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Tahoe City</td>
-    
-      <td>CA</td>
-    
-      <td>4.499</td>
-    
-      <td>1028</td>
-    
-      <td>8.137</td>
-    
-      <td>321</td>
-    
-      <td>39.45</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>3/12/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Meyers</td>
-    
-      <td>CA</td>
-    
-      <td>4.299</td>
-    
-      <td>1430</td>
-    
-      <td>8.545</td>
-    
-      <td>402</td>
-    
-      <td>47.05</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>4/8/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>San Rafael</td>
-    
-      <td>CA</td>
-    
-      <td>3.999</td>
-    
-      <td>1871</td>
-    
-      <td>8.307</td>
-    
-      <td>441</td>
-    
-      <td>53.09</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>4/26/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.936</td>
-    
-      <td>2088</td>
-    
-      <td>4.764</td>
-    
-      <td>217</td>
-    
-      <td>45.55</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>4/27/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Tehachapi</td>
-    
-      <td>CA</td>
-    
-      <td>3.999</td>
-    
-      <td>2434</td>
-    
-      <td>6.68</td>
-    
-      <td>346</td>
-    
-      <td>51.8</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>4/28/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Hurricane</td>
-    
-      <td>UT</td>
-    
-      <td>3.799</td>
-    
-      <td>2812</td>
-    
-      <td>7.194</td>
-    
-      <td>378</td>
-    
-      <td>52.54</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/1/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Bryce</td>
-    
-      <td>UT</td>
-    
-      <td>3.999</td>
-    
-      <td>2934</td>
-    
-      <td>2</td>
-    
-      <td></td>
-    
-      <td>DNF</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/4/2013</td>
-    
-      <td>Texaco</td>
-    
-      <td>Scipio</td>
-    
-      <td>UT</td>
-    
-      <td>3.759</td>
-    
-      <td>3292</td>
-    
-      <td>7.796</td>
-    
-      <td>480</td>
-    
-      <td>49</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/4/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Ely</td>
-    
-      <td>NV</td>
-    
-      <td>3.82</td>
-    
-      <td>3501</td>
-    
-      <td>4.314</td>
-    
-      <td>209</td>
-    
-      <td>48.45</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/5/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Colfax</td>
-    
-      <td>CA</td>
-    
-      <td>4.059</td>
-    
-      <td>3910</td>
-    
-      <td>7.839</td>
-    
-      <td>409</td>
-    
-      <td>52.18</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/24/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Vacaville</td>
-    
-      <td>CA</td>
-    
-      <td>3.999</td>
-    
-      <td>4197</td>
-    
-      <td>5.661</td>
-    
-      <td>287</td>
-    
-      <td>50.7</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/25/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Roseburg</td>
-    
-      <td>OR</td>
-    
-      <td>3.989</td>
-    
-      <td>4582</td>
-    
-      <td>8.273</td>
-    
-      <td>385</td>
-    
-      <td>46.54</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/27/2013</td>
-    
-      <td>Texaco</td>
-    
-      <td>Crescent City</td>
-    
-      <td>CA</td>
-    
-      <td>4.159</td>
-    
-      <td>4954</td>
-    
-      <td>7.817</td>
-    
-      <td>372</td>
-    
-      <td>47.59</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>5/29/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.999</td>
-    
-      <td>5350</td>
-    
-      <td>8.993</td>
-    
-      <td>396</td>
-    
-      <td>44.03</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>6/5/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.969</td>
-    
-      <td>5716</td>
-    
-      <td>6.93</td>
-    
-      <td>366</td>
-    
-      <td>52.81</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>6/14/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.979</td>
-    
-      <td>6191</td>
-    
-      <td>8.245</td>
-    
-      <td>475</td>
-    
-      <td>57.61</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>6/22/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>4.219</td>
-    
-      <td>6721</td>
-    
-      <td>9.363</td>
-    
-      <td>530</td>
-    
-      <td>56.61</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>7/1/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.899</td>
-    
-      <td>7162</td>
-    
-      <td>8.002</td>
-    
-      <td>441</td>
-    
-      <td>55.11</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>7/9/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.889</td>
-    
-      <td>7606</td>
-    
-      <td>8.02</td>
-    
-      <td>444</td>
-    
-      <td>55.36</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>7/13/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.959</td>
-    
-      <td>7937</td>
-    
-      <td>5.824</td>
-    
-      <td>331</td>
-    
-      <td>56.8</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>7/20/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.959</td>
-    
-      <td>8364</td>
-    
-      <td>7.635</td>
-    
-      <td>427</td>
-    
-      <td>55.93</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>7/29/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.899</td>
-    
-      <td>8897</td>
-    
-      <td>9.564</td>
-    
-      <td>533</td>
-    
-      <td>55.73</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>8/4/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.879</td>
-    
-      <td>9191</td>
-    
-      <td>5.234</td>
-    
-      <td>294</td>
-    
-      <td>56.17</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>8/20/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.759</td>
-    
-      <td>9678</td>
-    
-      <td>9.071</td>
-    
-      <td>487</td>
-    
-      <td>53.69</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>8/23/2013</td>
-    
-      <td>Texaco</td>
-    
-      <td>Mariposa</td>
-    
-      <td>CA</td>
-    
-      <td>4.099</td>
-    
-      <td>9871</td>
-    
-      <td>3.644</td>
-    
-      <td>193</td>
-    
-      <td>52.96</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>8/26/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.739</td>
-    
-      <td>10340</td>
-    
-      <td>8.596</td>
-    
-      <td>469</td>
-    
-      <td>54.56</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>9/19/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Bakersfield</td>
-    
-      <td>CA</td>
-    
-      <td>4.799</td>
-    
-      <td>10707</td>
-    
-      <td>7.541</td>
-    
-      <td>367</td>
-    
-      <td>48.67</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>9/21/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Anaheim</td>
-    
-      <td>CA</td>
-    
-      <td>3.999</td>
-    
-      <td>11045</td>
-    
-      <td>6.699</td>
-    
-      <td>338</td>
-    
-      <td>50.46</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>9/24/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.939</td>
-    
-      <td>11461</td>
-    
-      <td>8.878</td>
-    
-      <td>416</td>
-    
-      <td>DNF</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/17/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.799</td>
-    
-      <td>11731</td>
-    
-      <td>5.51</td>
-    
-      <td>270</td>
-    
-      <td>49</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/18/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Mustang</td>
-    
-      <td>NV</td>
-    
-      <td>3.899</td>
-    
-      <td>11952</td>
-    
-      <td>4.623</td>
-    
-      <td>221</td>
-    
-      <td>47.8</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/18/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Battle Mountain</td>
-    
-      <td>NV</td>
-    
-      <td>3.499</td>
-    
-      <td>12159</td>
-    
-      <td>4.749</td>
-    
-      <td>207</td>
-    
-      <td>43.59</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/19/2013</td>
-    
-      <td>Texaco</td>
-    
-      <td>Salt Lake City</td>
-    
-      <td>UT</td>
-    
-      <td>3.439</td>
-    
-      <td>12462</td>
-    
-      <td>7.174</td>
-    
-      <td>303</td>
-    
-      <td>42.24</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/22/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Moab</td>
-    
-      <td>UT</td>
-    
-      <td>3.699</td>
-    
-      <td>12830</td>
-    
-      <td>6.264</td>
-    
-      <td>368</td>
-    
-      <td>DNF</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/22/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Tooele</td>
-    
-      <td>UT</td>
-    
-      <td>3.499</td>
-    
-      <td>13086</td>
-    
-      <td>6.175</td>
-    
-      <td>256</td>
-    
-      <td>41.46</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>10/23/2013</td>
-    
-      <td>Chevron</td>
-    
-      <td>Winnemucca</td>
-    
-      <td>NV</td>
-    
-      <td>3.599</td>
-    
-      <td>13424</td>
-    
-      <td>7.687</td>
-    
-      <td>388</td>
-    
-      <td>43.97</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2013-11-06</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.659</td>
-    
-      <td>13830</td>
-    
-      <td>7.838</td>
-    
-      <td>406</td>
-    
-      <td>51.80</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-01-11</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.579</td>
-    
-      <td>14223</td>
-    
-      <td>8.833</td>
-    
-      <td>393</td>
-    
-      <td>44.49</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-03-04</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.899</td>
-    
-      <td>14634</td>
-    
-      <td>8.954</td>
-    
-      <td>411</td>
-    
-      <td>45.9</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-03-08</td>
-    
-      <td>Chevron</td>
-    
-      <td>Carquinez Bridge</td>
-    
-      <td>CA</td>
-    
-      <td>3.999</td>
-    
-      <td>15002</td>
-    
-      <td>9.553</td>
-    
-      <td>368</td>
-    
-      <td>38.52</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-03-22</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>3.919</td>
-    
-      <td>15368</td>
-    
-      <td>8.959</td>
-    
-      <td>366</td>
-    
-      <td>40.85</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-04-12</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>4.119</td>
-    
-      <td>15744</td>
-    
-      <td>9.086</td>
-    
-      <td>376</td>
-    
-      <td>41.38</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-05-21</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>4.139</td>
-    
-      <td>16158</td>
-    
-      <td>8.734</td>
-    
-      <td>414</td>
-    
-      <td>47.4</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-05-24</td>
-    
-      <td>Chevron</td>
-    
-      <td>Ventura</td>
-    
-      <td>CA</td>
-    
-      <td>4.139</td>
-    
-      <td>16564</td>
-    
-      <td>8.734</td>
-    
-      <td>406</td>
-    
-      <td>46.49</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-05-27</td>
-    
-      <td>Chevron</td>
-    
-      <td>Gonzales</td>
-    
-      <td>CA</td>
-    
-      <td>4.259</td>
-    
-      <td>16999</td>
-    
-      <td>8.625</td>
-    
-      <td>435</td>
-    
-      <td>50.43</td>
-    
-  </tr>
-
-  <tr>
-    
-      <td>2014-06-29</td>
-    
-      <td>Chevron</td>
-    
-      <td>Berkeley</td>
-    
-      <td>CA</td>
-    
-      <td>4.179</td>
-    
-      <td>17420</td>
-    
-      <td>8.774</td>
-    
-      <td>421</td>
-    
-      <td>47.98</td>
-    
-  </tr>
- 
-</table>
-<br>
+<html>
+	<head>
+		<title>MPG Data</title>
+		<link rel="stylesheet" type="text/css" href="mpg.css" />
+		<script src="lib/d3.v3.min.js"  charset="utf-8"></script>
+		<script src="lib/d3.tip.v0.6.3.js"></script>
+		<script src="mpg.js" charset="utf-8"></script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-47982219-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+		</head>
+	<body>
+		<h3 id="intro">Main site: <a href="http://www.frankcleary.com">www.frankcleary.com</a></h3>
+		<table id="summarytable">
+			<thead id="sumhead">
+				<tr>
+					<th colspan="2">
+						Prius Data
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Miles driven last fillup</td>
+					<td>421.0 miles</td>
+				</tr>
+				<tr>
+					<td>Most recent mpg</td>
+					<td>47.98 mpg</td>
+				</tr>
+				<tr>
+					<td>Lifetime mpg</td>
+					<td>49.14 mpg</td>
+				</tr>
+				<tr>
+					<td>Lifetime gas cost</td>
+					<td>$1407.29</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div id="slideshow">
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" id="ssidx"><param name="movie" value="http://cdn.smugmug.com/ria/ShizamSlides-2013072402.swf" /><param name="flashVars" value="AlbumID=43680455&AlbumKey=6L4DcJ&transparent=true&bgColor=&borderThickness=&borderColor=&useInside=&endPoint=&mainHost=cdn.smugmug.com&VersionNos=2013072402&width=600&height=400&clickToImage=true&captions=false&showThumbs=false&autoStart=true&showSpeed=true&pageStyle=black&showButtons=true&randomStart=true&randomize=true&splash=http%3A%2F%2Fwww.smugmug.com%2Fimg%2Fria%2FShizamSlides%2Fsmugmug_black.png&splashDelay=0&crossFadeSpeed=350" /><param name="wmode" value="transparent" /><param name="allowNetworking" value="all" /><param name="allowScriptAccess" value="always" /><embed src="http://cdn.smugmug.com/ria/ShizamSlides-2013072402.swf" flashVars="AlbumID=43680455&AlbumKey=6L4DcJ&transparent=true&bgColor=&borderThickness=&borderColor=&useInside=&endPoint=&mainHost=cdn.smugmug.com&VersionNos=2013072402&width=600&height=400&clickToImage=true&captions=false&showThumbs=false&autoStart=true&showSpeed=true&pageStyle=black&showButtons=true&randomStart=true&randomize=true&splash=http%3A%2F%2Fwww.smugmug.com%2Fimg%2Fria%2FShizamSlides%2Fsmugmug_black.png&splashDelay=0&crossFadeSpeed=350" width="600" height="400" wmode="transparent" type="application/x-shockwave-flash" allowScriptAccess="always" allowNetworking="all" ></embed></object>
+		</div>
+		<div id="mpg" class="graph"></div>
+		<br>
+		<div id="miles" class="graph"></div>
+
+		
+		<table id="fulltable">
+			<thead>
+				<tr>
+					<th colspan="9" id="fullhead">
+						Lifetime Data:
+					</th>
+				</tr>
+				<tr>
+				
+				  <th>Date</th>
+				
+				  <th>Brand</th>
+				
+				  <th>City</th>
+				
+				  <th>State</th>
+				
+				  <th>$/Gal</th>
+				
+				  <th>Odometer</th>
+				
+				  <th>Gallons</th>
+				
+				  <th>Miles</th>
+				
+				  <th>MPG</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+				
+				  <tr>
+					
+					  <td>2/22/2013</td>
+					
+					  <td>Texaco</td>
+					
+					  <td>Mariposa</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.259</td>
+					
+					  <td>245</td>
+					
+					  <td>6.23</td>
+					
+					  <td>NA</td>
+					
+					  <td>NA</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2/24/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.159</td>
+					
+					  <td>707</td>
+					
+					  <td>8.452</td>
+					
+					  <td>412</td>
+					
+					  <td>48.75</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>3/8/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Tahoe City</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.499</td>
+					
+					  <td>1028</td>
+					
+					  <td>8.137</td>
+					
+					  <td>321</td>
+					
+					  <td>39.45</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>3/12/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Meyers</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.299</td>
+					
+					  <td>1430</td>
+					
+					  <td>8.545</td>
+					
+					  <td>402</td>
+					
+					  <td>47.05</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>4/8/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>San Rafael</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.999</td>
+					
+					  <td>1871</td>
+					
+					  <td>8.307</td>
+					
+					  <td>441</td>
+					
+					  <td>53.09</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>4/26/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.936</td>
+					
+					  <td>2088</td>
+					
+					  <td>4.764</td>
+					
+					  <td>217</td>
+					
+					  <td>45.55</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>4/27/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Tehachapi</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.999</td>
+					
+					  <td>2434</td>
+					
+					  <td>6.68</td>
+					
+					  <td>346</td>
+					
+					  <td>51.8</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>4/28/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Hurricane</td>
+					
+					  <td>UT</td>
+					
+					  <td>3.799</td>
+					
+					  <td>2812</td>
+					
+					  <td>7.194</td>
+					
+					  <td>378</td>
+					
+					  <td>52.54</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/1/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Bryce</td>
+					
+					  <td>UT</td>
+					
+					  <td>3.999</td>
+					
+					  <td>2934</td>
+					
+					  <td>2</td>
+					
+					  <td></td>
+					
+					  <td>DNF</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/4/2013</td>
+					
+					  <td>Texaco</td>
+					
+					  <td>Scipio</td>
+					
+					  <td>UT</td>
+					
+					  <td>3.759</td>
+					
+					  <td>3292</td>
+					
+					  <td>7.796</td>
+					
+					  <td>480</td>
+					
+					  <td>49</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/4/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Ely</td>
+					
+					  <td>NV</td>
+					
+					  <td>3.82</td>
+					
+					  <td>3501</td>
+					
+					  <td>4.314</td>
+					
+					  <td>209</td>
+					
+					  <td>48.45</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/5/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Colfax</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.059</td>
+					
+					  <td>3910</td>
+					
+					  <td>7.839</td>
+					
+					  <td>409</td>
+					
+					  <td>52.18</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/24/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Vacaville</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.999</td>
+					
+					  <td>4197</td>
+					
+					  <td>5.661</td>
+					
+					  <td>287</td>
+					
+					  <td>50.7</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/25/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Roseburg</td>
+					
+					  <td>OR</td>
+					
+					  <td>3.989</td>
+					
+					  <td>4582</td>
+					
+					  <td>8.273</td>
+					
+					  <td>385</td>
+					
+					  <td>46.54</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/27/2013</td>
+					
+					  <td>Texaco</td>
+					
+					  <td>Crescent City</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.159</td>
+					
+					  <td>4954</td>
+					
+					  <td>7.817</td>
+					
+					  <td>372</td>
+					
+					  <td>47.59</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>5/29/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.999</td>
+					
+					  <td>5350</td>
+					
+					  <td>8.993</td>
+					
+					  <td>396</td>
+					
+					  <td>44.03</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>6/5/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.969</td>
+					
+					  <td>5716</td>
+					
+					  <td>6.93</td>
+					
+					  <td>366</td>
+					
+					  <td>52.81</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>6/14/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.979</td>
+					
+					  <td>6191</td>
+					
+					  <td>8.245</td>
+					
+					  <td>475</td>
+					
+					  <td>57.61</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>6/22/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.219</td>
+					
+					  <td>6721</td>
+					
+					  <td>9.363</td>
+					
+					  <td>530</td>
+					
+					  <td>56.61</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>7/1/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.899</td>
+					
+					  <td>7162</td>
+					
+					  <td>8.002</td>
+					
+					  <td>441</td>
+					
+					  <td>55.11</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>7/9/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.889</td>
+					
+					  <td>7606</td>
+					
+					  <td>8.02</td>
+					
+					  <td>444</td>
+					
+					  <td>55.36</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>7/13/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.959</td>
+					
+					  <td>7937</td>
+					
+					  <td>5.824</td>
+					
+					  <td>331</td>
+					
+					  <td>56.8</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>7/20/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.959</td>
+					
+					  <td>8364</td>
+					
+					  <td>7.635</td>
+					
+					  <td>427</td>
+					
+					  <td>55.93</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>7/29/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.899</td>
+					
+					  <td>8897</td>
+					
+					  <td>9.564</td>
+					
+					  <td>533</td>
+					
+					  <td>55.73</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>8/4/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.879</td>
+					
+					  <td>9191</td>
+					
+					  <td>5.234</td>
+					
+					  <td>294</td>
+					
+					  <td>56.17</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>8/20/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.759</td>
+					
+					  <td>9678</td>
+					
+					  <td>9.071</td>
+					
+					  <td>487</td>
+					
+					  <td>53.69</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>8/23/2013</td>
+					
+					  <td>Texaco</td>
+					
+					  <td>Mariposa</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.099</td>
+					
+					  <td>9871</td>
+					
+					  <td>3.644</td>
+					
+					  <td>193</td>
+					
+					  <td>52.96</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>8/26/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.739</td>
+					
+					  <td>10340</td>
+					
+					  <td>8.596</td>
+					
+					  <td>469</td>
+					
+					  <td>54.56</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>9/19/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Bakersfield</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.799</td>
+					
+					  <td>10707</td>
+					
+					  <td>7.541</td>
+					
+					  <td>367</td>
+					
+					  <td>48.67</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>9/21/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Anaheim</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.999</td>
+					
+					  <td>11045</td>
+					
+					  <td>6.699</td>
+					
+					  <td>338</td>
+					
+					  <td>50.46</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>9/24/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.939</td>
+					
+					  <td>11461</td>
+					
+					  <td>8.878</td>
+					
+					  <td>416</td>
+					
+					  <td>DNF</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/17/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.799</td>
+					
+					  <td>11731</td>
+					
+					  <td>5.51</td>
+					
+					  <td>270</td>
+					
+					  <td>49</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/18/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Mustang</td>
+					
+					  <td>NV</td>
+					
+					  <td>3.899</td>
+					
+					  <td>11952</td>
+					
+					  <td>4.623</td>
+					
+					  <td>221</td>
+					
+					  <td>47.8</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/18/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Battle Mountain</td>
+					
+					  <td>NV</td>
+					
+					  <td>3.499</td>
+					
+					  <td>12159</td>
+					
+					  <td>4.749</td>
+					
+					  <td>207</td>
+					
+					  <td>43.59</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/19/2013</td>
+					
+					  <td>Texaco</td>
+					
+					  <td>Salt Lake City</td>
+					
+					  <td>UT</td>
+					
+					  <td>3.439</td>
+					
+					  <td>12462</td>
+					
+					  <td>7.174</td>
+					
+					  <td>303</td>
+					
+					  <td>42.24</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/22/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Moab</td>
+					
+					  <td>UT</td>
+					
+					  <td>3.699</td>
+					
+					  <td>12830</td>
+					
+					  <td>6.264</td>
+					
+					  <td>368</td>
+					
+					  <td>DNF</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/22/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Tooele</td>
+					
+					  <td>UT</td>
+					
+					  <td>3.499</td>
+					
+					  <td>13086</td>
+					
+					  <td>6.175</td>
+					
+					  <td>256</td>
+					
+					  <td>41.46</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>10/23/2013</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Winnemucca</td>
+					
+					  <td>NV</td>
+					
+					  <td>3.599</td>
+					
+					  <td>13424</td>
+					
+					  <td>7.687</td>
+					
+					  <td>388</td>
+					
+					  <td>43.97</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2013-11-06</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.659</td>
+					
+					  <td>13830</td>
+					
+					  <td>7.838</td>
+					
+					  <td>406</td>
+					
+					  <td>51.80</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-01-11</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.579</td>
+					
+					  <td>14223</td>
+					
+					  <td>8.833</td>
+					
+					  <td>393</td>
+					
+					  <td>44.49</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-03-04</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.899</td>
+					
+					  <td>14634</td>
+					
+					  <td>8.954</td>
+					
+					  <td>411</td>
+					
+					  <td>45.9</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-03-08</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Carquinez Bridge</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.999</td>
+					
+					  <td>15002</td>
+					
+					  <td>9.553</td>
+					
+					  <td>368</td>
+					
+					  <td>38.52</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-03-22</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>3.919</td>
+					
+					  <td>15368</td>
+					
+					  <td>8.959</td>
+					
+					  <td>366</td>
+					
+					  <td>40.85</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-04-12</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.119</td>
+					
+					  <td>15744</td>
+					
+					  <td>9.086</td>
+					
+					  <td>376</td>
+					
+					  <td>41.38</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-05-21</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.139</td>
+					
+					  <td>16158</td>
+					
+					  <td>8.734</td>
+					
+					  <td>414</td>
+					
+					  <td>47.4</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-05-24</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Ventura</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.139</td>
+					
+					  <td>16564</td>
+					
+					  <td>8.734</td>
+					
+					  <td>406</td>
+					
+					  <td>46.49</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-05-27</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Gonzales</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.259</td>
+					
+					  <td>16999</td>
+					
+					  <td>8.625</td>
+					
+					  <td>435</td>
+					
+					  <td>50.43</td>
+					
+				  </tr>
+				
+				  <tr>
+					
+					  <td>2014-06-29</td>
+					
+					  <td>Chevron</td>
+					
+					  <td>Berkeley</td>
+					
+					  <td>CA</td>
+					
+					  <td>4.179</td>
+					
+					  <td>17420</td>
+					
+					  <td>8.774</td>
+					
+					  <td>421</td>
+					
+					  <td>47.98</td>
+					
+				  </tr>
+				
+			</tbody>
+		</table>
+	</body>
+</html>
