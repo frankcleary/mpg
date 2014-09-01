@@ -10,7 +10,7 @@ function parser(d) {
 var format = d3.time.format("%m/%d/%Y");
 
 function milesovertime(csvdata) {
-    var margin = {top: 10, right: 30, bottom: 100, left: 100};
+    var margin = {top: 30, right: 30, bottom: 100, left: 100};
     var width = 1000 - margin.left - margin.right;
     var height = 600 - margin.top - margin.bottom;
 
@@ -137,7 +137,7 @@ function mpghist(csvdata) {
     for (var i = 0; i < numbins; i++) {
 	if (i < histdata.length) {
 	    histdata[i] = { numfill: 0, meta: "" };
-	}
+		}
     }
 
     csvdata.forEach(function(d) {
@@ -147,7 +147,7 @@ function mpghist(csvdata) {
 	    histdata[bin].meta += "<tr><td>" + d.City + " " + d.State + 
 		"</td><td>" + format(d.pDate) + 
 		"</td><td>" + d.pMPG.toFixed(1) + " mpg</td></tr>";
-	}
+		}
     });
 
     // This scale is for determining the widths of the histogram bars
