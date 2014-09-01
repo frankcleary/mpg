@@ -4,9 +4,6 @@ table, th, td {
    padding:5px;
    text-align:center;
 }
-tbody tr:hover{
-	background-color: #B1DCFE;
-}
 body {
     padding:30px;
 }
